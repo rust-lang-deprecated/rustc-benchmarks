@@ -1,4 +1,4 @@
 all:
-	rustc -Ztime-passes hello.rs
+	$RUSTC hello.rs
 clean:
 	rm hello

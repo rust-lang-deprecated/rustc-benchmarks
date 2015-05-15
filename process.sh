@@ -1,5 +1,5 @@
-DATE=$(date +%F)
 START=$(pwd)
+RUSTC="$RUSTC -Ztime-passes"
 
 for dir in *; do
     if [[ -d $dir ]]; then
@@ -7,7 +7,7 @@ for dir in *; do
         cd $dir
         for i in 0 1 2 3 4 5
         do
-            rustc --version >/home/ncameron/times/raw/$dir-$DATE-$i.log
+            $RUSTC --version >/home/ncameron/times/raw/$dir-$DATE-$i.log
             echo "rustc: ./$dir" >>/home/ncameron/times/raw/$dir-$DATE-$i.log
             make >>/home/ncameron/times/raw/$dir-$DATE-$i.log
             echo "done" >>/home/ncameron/times/raw/$dir-$DATE-$i.log
