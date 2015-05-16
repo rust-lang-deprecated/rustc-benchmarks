@@ -17,11 +17,12 @@ for dir in *; do
             make >>$TIMES_DIR/raw/$dir--$DATE--$i.log
             echo "done" >>$TIMES_DIR/raw/$dir--$DATE--$i.log
 
-            make clean >/dev/null
+            make touch >/dev/null
         done
+        make clean >/dev/null
 
         cd $TIMES_DIR
-        python $SCRIPTS_DIR/process.py $dir $DATE 1 6
+        python $SCRIPTS_DIR/process.py $dir $DATE 6
         for i in 0 1 2 3 4 5
         do
             git add raw/$dir--$DATE--$i.log
