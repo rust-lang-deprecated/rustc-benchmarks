@@ -1,4 +1,6 @@
 all:
-	$RUSTC regex_macros/src/lib.rs --crate-type rlib -L . -o regex_macros.rlib
+	cd regex_macros && $(CARGO_BUILD)
 clean:
-	rm regex_macros.rlib
+	rm regex_macros/target -rf
+	rm regex_macros/Cargo.lock
+	rm target -rf

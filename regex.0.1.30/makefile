@@ -1,4 +1,5 @@
 all:
-	$RUSTC src/lib.rs --crate-type rlib -o libregex.rlib --crate-name regex
+	$(CARGO_BUILD)
 clean:
-	rm *.rlib
+	rm target -rf
+	rm Cargo.lock
