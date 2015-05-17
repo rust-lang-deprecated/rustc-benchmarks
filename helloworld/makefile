@@ -1,6 +1,6 @@
 all:
 	$(RUSTC) hello.rs
 touch:
-	touch hello.rs
+	rm hello
 clean:
 	rm hello
