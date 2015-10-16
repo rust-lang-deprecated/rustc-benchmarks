@@ -104,7 +104,7 @@ impl BufferQueue {
                 let n = set.nonmember_prefix_len(&buf[*pos..]);
                 if n > 0 {
                     let new_pos = *pos + n;
-                    let out = String::from_str(&buf[*pos..new_pos]);
+                    let out = String::from(&buf[*pos..new_pos]);
                     *pos = new_pos;
                     (Some(NotFromSet(out)), new_pos >= buf.len())
                 } else {

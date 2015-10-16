@@ -168,11 +168,17 @@ impl BuildAst {
 /// expression.
 pub type Flags = u8;
 
+/// Foo
 pub const FLAG_EMPTY:      u8 = 0;
+/// Foo
 pub const FLAG_NOCASE:     u8 = 1 << 0; // i
+/// Foo
 pub const FLAG_MULTI:      u8 = 1 << 1; // m
+/// Foo
 pub const FLAG_DOTNL:      u8 = 1 << 2; // s
+/// Foo
 pub const FLAG_SWAP_GREED: u8 = 1 << 3; // U
+/// Foo
 pub const FLAG_NEGATED:    u8 = 1 << 4; // char class or not word boundary
 
 struct Parser {

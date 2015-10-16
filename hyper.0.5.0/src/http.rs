@@ -433,10 +433,15 @@ pub struct Incoming<S> {
     pub headers: Headers
 }
 
+/// Foo
 pub const SP: u8 = b' ';
+/// Foo
 pub const CR: u8 = b'\r';
+/// Foo
 pub const LF: u8 = b'\n';
+/// Foo
 pub const STAR: u8 = b'*';
+/// Foo
 pub const LINE_ENDING: &'static str = "\r\n";
 
 /// The raw status code and reason-phrase.
