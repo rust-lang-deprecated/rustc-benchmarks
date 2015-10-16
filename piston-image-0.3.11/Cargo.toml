@@ -1,0 +1,48 @@
+[package]
+name = "image"
+version = "0.3.11"
+license = "MIT"
+description = "Imaging library written in Rust. Provides basic filters and decoders for the most common image formats."
+authors = [
+    "ccgn",
+    "bvssvni <bvssvni@gmail.com>",
+    "nwin",
+    "TyOverby <ty@pre-alpha.com>"]
+readme = "README.md"
+documentation = "http://www.piston.rs/image/image/index.html"
+repository = "https://github.com/PistonDevelopers/image.git"
+homepage = "https://github.com/PistonDevelopers/image"
+exclude = [
+    "src/png/testdata/*",
+    "examples/*",
+    "tests/*",
+]
+[lib]
+name = "image"
+path = "./src/lib.rs"
+
+[dependencies]
+byteorder = "0.3.10"
+num = "0.1.25"
+enum_primitive = "0.0.1"
+glob = "0.2.10"
+
+[dependencies.gif]
+version = "0.5"
+optional = true
+
+[dependencies.png]
+version = "0.3"
+optional = true
+
+[features]
+default = ["gif_codec", "jpeg", "png_codec", "ppm", "tga", "tiff", "webp", "bmp"]
+
+gif_codec = ["gif"]
+jpeg = []
+png_codec = ["png"]
+ppm = []
+tga = []
+tiff = []
+webp = []
+bmp = []
