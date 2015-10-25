@@ -2,7 +2,6 @@ TIMES_DIR=/home/ncameron/times
 SCRIPTS_DIR=/home/ncameron/times-scripts
 
 START=$(pwd)
-export RUSTC="$RUSTC -Ztime-passes"
 export CARGO_BUILD="cargo rustc -- -Ztime-passes"
 export PATH=$RUSTC_DIR/bin:$PATH
 

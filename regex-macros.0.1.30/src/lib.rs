@@ -379,6 +379,7 @@
 //! compiled expression.
 
 #![deny(missing_docs)]
+#![feature(pattern)]
 #![cfg_attr(test, deny(warnings))]
 #![cfg_attr(feature = "pattern", feature(core))]
 #![doc(html_logo_url = "http://www.rust-lang.org/logos/rust-logo-128x128-blk-v2.png",

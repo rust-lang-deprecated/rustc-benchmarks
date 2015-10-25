@@ -129,10 +129,10 @@ impl<'a> NfaGen<'a> {
         let init_groups = self.vec_expr(0..num_cap_locs,
                                         &mut |cx, _| cx.expr_none(self.sp));
 
-        let prefix_lit = Rc::new(self.prog.prefix.as_bytes().to_vec());
-        let prefix_bytes = self.cx.expr_lit(self.sp, ast::LitBinary(prefix_lit));
+        // let prefix_lit = Rc::new(self.prog.prefix.as_bytes().to_vec());
+        // let prefix_bytes = self.cx.expr_lit(self.sp, ast::LitBinary(prefix_lit));
 
-        let check_prefix = self.check_prefix();
+        // let check_prefix = self.check_prefix();
         let step_insts = self.step_insts();
         let add_insts = self.add_insts();
         let regex = &*self.original;
@@ -178,7 +178,6 @@ fn exec<'t>(which: ::regex::native::MatchKind, input: &'t str,
         #[allow(unused_variables)]
         fn run(&mut self, start: usize, end: usize) -> Vec<Option<usize>> {
             let mut matched = false;
-            let prefix_bytes: &[u8] = $prefix_bytes;
             let mut clist = Threads::new(self.which);
             let mut nlist = Threads::new(self.which);
 
@@ -196,7 +195,6 @@ fn exec<'t>(which: ::regex::native::MatchKind, input: &'t str,
                         break
                     }
 
-                    $check_prefix
                 }
                 if clist.size == 0 || (!$prefix_anchor && !matched) {
                     self.add(&mut clist, 0, &mut groups)
