@@ -15,11 +15,8 @@ time = "0"
 log = "0"
 phf = "0.7"
 phf_macros = "0.7"
-
-[dependencies.string_cache]
-git = "https://github.com/servo/string-cache"
-[dependencies.string_cache_plugin]
-git = "https://github.com/servo/string-cache"
+string_cache = "0.1.12"
+string_cache_plugin = { version = "0.1.7", optional = true }
 
 [dependencies.mac]
 git = "https://github.com/reem/rust-mac"

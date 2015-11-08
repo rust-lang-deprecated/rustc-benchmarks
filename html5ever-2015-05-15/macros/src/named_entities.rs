@@ -19,7 +19,7 @@ use rustc_serialize::json;
 use rustc_serialize::json::Json;
 use rustc_serialize::Decodable;
 use syntax::codemap::Span;
-use syntax::ast::{Path, ExprLit, Lit_, TokenTree, TtToken};
+use syntax::ast::{Path, ExprLit, Lit_, TokenTree};
 use syntax::parse::token;
 use syntax::ext::base::{ExtCtxt, MacResult, MacEager};
 use syntax::ext::source_util::expand_file;
@@ -79,7 +79,7 @@ pub fn expand(cx: &mut ExtCtxt, sp: Span, tt: &[TokenTree]) -> Box<MacResult+'st
     // Argument to the macro should be a single literal string: a path to
     // entities.json, relative to the file containing the macro invocation.
     let json_filename = match tt {
-        [TtToken(_, token::Literal(token::Lit::Str_(s), _))] => s.as_str().to_string(),
+        [TokenTree::Token(_, token::Literal(token::Lit::Str_(s), _))] => s.as_str().to_string(),
         _ => ext_bail!(cx, sp, usage),
     };
 
