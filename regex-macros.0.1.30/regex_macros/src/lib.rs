@@ -589,7 +589,7 @@ fn exec<'t>(which: ::regex::native::MatchKind, input: &'t str,
             pats: vec!(P(ast::Pat{
                 id: ast::DUMMY_NODE_ID,
                 span: self.sp,
-                node: ast::PatWild(ast::PatWildSingle),
+                node: ast::PatWild,
             })),
             guard: None,
             body: body,
@@ -611,7 +611,7 @@ fn exec<'t>(which: ::regex::native::MatchKind, input: &'t str,
 /// Otherwise, logs an error with cx.span_err and returns None.
 fn parse(cx: &mut ExtCtxt, tts: &[ast::TokenTree]) -> Option<String> {
     let mut parser = cx.new_parser_from_tts(tts);
-    let entry = cx.expander().fold_expr(parser.parse_expr());
+    let entry = cx.expander().fold_expr(parser.parse_expr_panic());
     let regex = match entry.node {
         ast::ExprLit(ref lit) => {
             match lit.node {
