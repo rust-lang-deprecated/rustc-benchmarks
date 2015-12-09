@@ -203,7 +203,7 @@ fn parse_tag(parser: &mut Parser) -> Result<Spanned<Tag>, FatalError> {
 fn parse(cx: &mut ExtCtxt, toks: &[ast::TokenTree]) -> Result<Match, FatalError> {
     let mut parser = parse::new_parser_from_tts(cx.parse_sess(), cx.cfg(), toks.to_vec());
 
-    let discriminant = try!(parser.parse_expr_res(Restrictions::RESTRICTION_NO_STRUCT_LITERAL));
+    let discriminant = try!(parser.parse_expr_res(Restrictions::RESTRICTION_NO_STRUCT_LITERAL, None));
     try!(parser.commit_expr_expecting(&*discriminant, token::OpenDelim(token::Brace)));
 
     let mut arms: Vec<Arm> = Vec::new();
@@ -216,7 +216,7 @@ fn parse(cx: &mut ExtCtxt, toks: &[ast::TokenTree]) -> Result<Match, FatalError>
 
         let lhs_lo = parser.span.lo;
         let lhs = match parser.token {
-            token::Underscore | token::Ident(..) => Pat(parser.parse_pat_panic()),
+            token::Underscore | token::Ident(..) => Pat(parser.parse_pat().unwrap()),
             token::Lt => {
                 let mut tags = Vec::new();
                 while parser.token != token::FatArrow {
@@ -236,7 +236,7 @@ fn parse(cx: &mut ExtCtxt, toks: &[ast::TokenTree]) -> Result<Match, FatalError>
             try!(parser.expect(&token::Comma));
             Else
         } else {
-            let expr = try!(parser.parse_expr_res(Restrictions::RESTRICTION_STMT_EXPR));
+            let expr = try!(parser.parse_expr_res(Restrictions::RESTRICTION_STMT_EXPR, None));
             rhs_hi = parser.last_span.hi;
 
             let require_comma =

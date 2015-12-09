@@ -15,12 +15,13 @@
 
 extern crate syntax;
 extern crate rustc;
+extern crate rustc_plugin;
 extern crate rustc_serialize;
 
 #[macro_use]
 extern crate mac;
 
-use rustc::plugin::Registry;
+use rustc_plugin::Registry;
 
 // See https://github.com/rust-lang/rust/pull/23857
 macro_rules! panictry {
