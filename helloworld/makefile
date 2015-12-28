@@ -1,5 +1,5 @@
 all:
-	$(RUSTC) hello.rs
+	$(RUSTC) hello.rs -Ztime-passes -Zinput-stats
 touch:
 	rm hello
 clean:

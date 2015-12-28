@@ -100,7 +100,7 @@ matching, by enforcing the following restrictions on its input:
 use std::collections::{HashSet, HashMap};
 use std::collections::hash_map::Entry::{Occupied, Vacant};
 
-use syntax::diagnostic::FatalError;
+use syntax::errors::FatalError;
 use syntax::ptr::P;
 use syntax::codemap::{Span, Spanned, spanned};
 use syntax::ast;
