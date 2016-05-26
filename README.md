@@ -1,6 +1,6 @@
 # Benchmarks for Rust compiler performance
 
-Recorded timings shown at: http://www.ncameron.org/perf-rustc/
+Recorded timings shown at: http://perf.rust-lang.org/
 
 Each subdirectory should contain a single crate for benchmarking. It should
 include a makefile so that the crate can be built by running `make`. Any use of
