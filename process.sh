@@ -9,6 +9,7 @@ for dir in *; do
     if [[ -d $dir ]]; then
         echo "Processing $dir"
         cd $dir
+
         for i in 0 1 2 3 4 5
         do
             rustc --version >$TIMES_DIR/raw/$dir--$DATE--$i.log
@@ -18,6 +19,18 @@ for dir in *; do
 
             make touch >/dev/null
         done
+
+        export RUSTFLAGS='-Zorbit'
+        for i in 0 1 2 3 4 5
+        do
+            rustc --version >$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
+            echo "rustc: ./$dir" >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
+            make >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
+            echo "done" >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
+
+            make touch >/dev/null
+        done
+
         make clean >/dev/null
 
         cd $TIMES_DIR
@@ -25,6 +38,7 @@ for dir in *; do
         for i in 0 1 2 3 4 5
         do
             git add raw/$dir--$DATE--$i.log
+            git add raw/orbit-$dir--$DATE--$i.log
             git add processed/$dir--$DATE--$i.json
         done
 
