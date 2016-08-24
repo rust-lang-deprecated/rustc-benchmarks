@@ -1,7 +1,7 @@
 .PHONY: all touch clean
 
 all:
-	$(CARGO_BUILD) --test all
+	cargo rustc --test all --verbose -- -Ztime-passes -Zinput-stats
 touch:
 	rm -f target/debug/all-*
 clean:
