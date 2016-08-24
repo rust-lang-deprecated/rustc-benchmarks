@@ -1,3 +1,5 @@
+#!/bin/bash
+
 TIMES_DIR=/home/ncameron/times
 SCRIPTS_DIR=/home/ncameron/times-scripts
 
@@ -8,25 +10,15 @@ export PATH=$RUSTC_DIR/bin:$PATH
 for dir in *; do
     if [[ -d $dir ]]; then
         echo "Processing $dir"
-        cd $dir
 
         for i in 0 1 2 3 4 5
         do
-            rustc --version >$TIMES_DIR/raw/$dir--$DATE--$i.log
+            cd $RUST_DIR
+            git show HEAD -s >$TIMES_DIR/raw/$dir--$DATE--$i.log
+            cd $START/$dir
             echo "rustc: ./$dir" >>$TIMES_DIR/raw/$dir--$DATE--$i.log
             make >>$TIMES_DIR/raw/$dir--$DATE--$i.log
             echo "done" >>$TIMES_DIR/raw/$dir--$DATE--$i.log
-
-            make touch >/dev/null
-        done
-
-        export RUSTFLAGS='-Zorbit'
-        for i in 0 1 2 3 4 5
-        do
-            rustc --version >$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
-            echo "rustc: ./$dir" >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
-            make >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
-            echo "done" >>$TIMES_DIR/raw/orbit-$dir--$DATE--$i.log
 
             make touch >/dev/null
         done
