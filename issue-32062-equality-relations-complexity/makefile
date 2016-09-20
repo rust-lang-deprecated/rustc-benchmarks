@@ -1,6 +1,6 @@
 all:
 	$(RUSTC) issue-32062.rs -Ztime-passes -Zinput-stats
 touch:
-	rm hello
+	rm issue-32062
 clean:
-	rm hello
+	rm issue-32062
