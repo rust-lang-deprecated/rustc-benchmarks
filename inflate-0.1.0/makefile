@@ -1,7 +1,9 @@
+.PHONY: all touch clean
+
 all:
-	$(CARGO_BUILD)
+	cargo rustc -- $(CARGO_RUSTC_OPTS)
 touch:
-	rm -rf target/debug/*
+	find . -name '*.rs' | xargs touch
 clean:
-	rm target -rf
+	cargo clean
 	rm Cargo.lock

@@ -1,11 +1,20 @@
 # Benchmarks for Rust compiler performance
 
-Recorded timings shown at: http://perf.rust-lang.org/
+Each subdirectory contains a single benchmark. Although benchmarks may contain
+multiple crates, each benchmark has one "crate of interest" which is the one
+whose compilation time is measured.
 
-Each subdirectory should contain a single crate for benchmarking. It should
-include a makefile so that the crate can be built by running `make`. Any use of
-rustc should include the argument `-Ztime-passes`. See for example the
-helloworld crate. Each makefile should build only one crate.
+Each benchmark has a makefile with the following targets.
+* `all`: builds the entire benchmark. The `CARGO_RUSTC_OPTS` environment
+  variable can be specified to pass extra arguments to rustc invocations.
+* `touch`: touches or removes files in such a way that a subsequent `make`
+  invocation will build only the crate of interest.
+* `clean`: removes all build artifacts.
 
-regex is duplicated because there are two crates, and the current scipt only
-handles one crate per directory. It would be better to have a manifest or something.
+A historical record of timings is shown at: http://perf.rust-lang.org/. This
+site makes use of the `process.sh` script plus some auxiliary scripts not in
+this repository.
+
+Local runs comparing two different compilers can be performed with
+`compare.py`. This is useful when evaluating compile-time optimizations.
+
