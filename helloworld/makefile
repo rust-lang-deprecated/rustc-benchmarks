@@ -1,6 +1,7 @@
 all:
-	$(RUSTC) hello.rs -Ztime-passes -Zinput-stats
+	$(CARGO_BUILD)
 touch:
-	rm hello
+	rm -rf target/debug/*
 clean:
-	rm hello
+	rm target -rf
+	rm Cargo.lock

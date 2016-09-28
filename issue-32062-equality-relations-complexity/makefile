@@ -1,6 +1,7 @@
 all:
-	$(RUSTC) issue-32062.rs -Ztime-passes -Zinput-stats
+	$(CARGO_BUILD)
 touch:
-	rm issue-32062
+	rm -rf target/debug/*
 clean:
-	rm issue-32062
+	rm target -rf
+	rm Cargo.lock
