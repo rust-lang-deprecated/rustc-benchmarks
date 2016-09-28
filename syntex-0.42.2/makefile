@@ -1,8 +1,7 @@
 all:
 	$(CARGO_BUILD)
-
 touch:
-	cargo clean
-
+	rm -rf target/debug/*
 clean:
-	cargo clean
+	rm target -rf
+	rm Cargo.lock
