@@ -1,6 +1,7 @@
 all:
-	$(RUSTC) big-array-of-strings.rs -Ztime-passes -Zinput-stats
+	$(CARGO_BUILD)
 touch:
-	rm big-array-of-strings
+	rm -rf target/debug/*
 clean:
-	rm big-array-of-strings
+	rm target -rf
+	rm Cargo.lock
