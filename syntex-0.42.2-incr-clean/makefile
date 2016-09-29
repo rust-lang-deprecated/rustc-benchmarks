@@ -16,4 +16,3 @@ touch:
 clean:
 	rm -rf incr/*
 	cargo clean
-

@@ -5,5 +5,4 @@ all:
 touch:
 	rm -f target/debug/all-*
 clean:
-	rm target -rf
-	rm Cargo.lock
+	cargo clean
