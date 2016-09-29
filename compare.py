@@ -48,7 +48,7 @@ if __name__ == '__main__':
     rustc2 = sys.argv[2]
 
     # Get all the directories, excluding ".git".
-    all_dirs = [f for f in os.listdir('.') if os.path.isdir(f) and f != ".git"]
+    all_dirs = sorted([f for f in os.listdir('.') if os.path.isdir(f) and f != ".git"])
 
     # Get any specified directories. Otherwise, default to all of them.
     dirs = sys.argv[3:]
