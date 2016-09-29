@@ -1,7 +1,12 @@
+.PHONY: all touch clean
+
+# Time how long it takes to build `syntex_syntax`. See
+# `../syntax-0.42.2-incr-clean/makefile` for some further notes.
+
 all:
-	$(CARGO_BUILD)
+	cargo rustc -p syntex_syntax -- $(CARGO_RUSTC_OPTS)
 touch:
-	rm -rf target/debug/*
+	cargo clean -p syntex_syntax
 clean:
-	rm target -rf
-	rm Cargo.lock
+	cargo clean
+
