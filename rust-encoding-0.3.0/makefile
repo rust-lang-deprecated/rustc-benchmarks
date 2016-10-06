@@ -3,6 +3,6 @@
 all:
 	cargo rustc -- $(CARGO_RUSTC_OPTS)
 touch:
-	find . -name '*.rs' | xargs touch
+	touch src/lib.rs
 clean:
 	cargo clean
