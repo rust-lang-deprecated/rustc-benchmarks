@@ -10,7 +10,8 @@
 
 all:
 	RUSTFLAGS="-Z incremental=incr" \
-	    cargo rustc -p syntex_syntax -- $(CARGO_RUSTC_OPTS) -Z incremental-info
+	    cargo rustc -p syntex_syntax $(CARGO_OPTS) -- \
+	    $(CARGO_RUSTC_OPTS) -Z incremental-info
 touch:
 	cargo clean -p syntex_syntax
 clean:
