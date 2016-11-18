@@ -9,3 +9,5 @@ touch:
 	cargo clean -p syntex_syntax
 clean:
 	cargo clean
+patches:
+	@echo ''
