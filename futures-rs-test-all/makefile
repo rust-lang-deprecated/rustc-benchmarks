@@ -6,3 +6,5 @@ touch:
 	rm -f target/debug/all-*
 clean:
 	cargo clean
+patches:
+	@echo ''

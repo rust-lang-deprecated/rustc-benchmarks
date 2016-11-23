@@ -6,3 +6,5 @@ touch:
 	touch src/lib.rs
 clean:
 	cargo clean
+patches:
+	@echo ''
