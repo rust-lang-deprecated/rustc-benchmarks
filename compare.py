@@ -10,8 +10,24 @@ import subprocess
 import sys
 import time
 
+def read_patches():
+    (stdout, _stderr) = subprocess.Popen('make patches',
+                                         stdout = subprocess.PIPE,
+                                         stderr = subprocess.PIPE,
+                                         shell = True).communicate()
+    return stdout.split()
+
+def make(patches, make_env):
+    if not patches:
+        subprocess.check_call('make all > /dev/null 2>&1', env=make_env, shell=True)
+    else:
+        for patch in patches:
+            subprocess.check_call('make all%s > /dev/null 2>&1' % patch, env=make_env, shell=True)
+
 def run_test(dir, rustc):
     os.chdir(dir)
+
+    patches = read_patches()
 
     # First clean and rebuild from scratch. This downloads any necessary code
     # and builds preliminary crates.
@@ -22,14 +38,14 @@ def run_test(dir, rustc):
     subprocess.call('make clean > /dev/null 2>&1', shell=True)
     make_env = os.environ.copy()
     make_env['RUSTC'] = rustc
-    subprocess.check_call('make > /dev/null 2>&1', env=make_env, shell=True)
+    make(patches, make_env)
 
     # Measure compilation speed of the crate of interest three times.
     times = []
     for i in range(0, 3):
         subprocess.check_call('make touch > /dev/null 2>&1', shell=True)
         t1 = time.time()
-        subprocess.check_call('make > /dev/null 2>&1', env=make_env, shell=True)
+        make(patches, make_env)
         t2 = time.time()
         t = t2 - t1
         times.append(t)
