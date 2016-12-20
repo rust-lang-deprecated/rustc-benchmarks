@@ -54,13 +54,13 @@ for dir in $DIRS; do
             python $SCRIPTS_DIR/process.py "$dir$PATCH" "$DATE" 6
         done
 
-        for i in 0 1 2 3 4 5
-        do
-            for PATCH in "${PATCHES[@]}"; do
+        for PATCH in "${PATCHES[@]}"; do
+            for i in 0 1 2 3 4 5
+            do
                 git add "raw/$dir$PATCH--$DATE--$i.log"
-                git add "raw/orbit-$dir$PATCH--$DATE--$i.log"
-                git add "processed/$dir$PATCH--$DATE--$i.json"
             done
+
+            git add "processed/$dir$PATCH--$DATE.json"
         done
 
         cd $START
