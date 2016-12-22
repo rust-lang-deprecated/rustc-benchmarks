@@ -3,16 +3,14 @@
 if [ -z "$TIMES_DIR" ]; then
     TIMES_DIR=/home/ncameron/times
 fi
-if [ -z "$SCRIPTS_DIR" ]; then
-    SCRIPTS_DIR=/home/ncameron/times-scripts
-fi
+
+START=$(pwd)
+export SCRIPTS_DIR=${START}/scripts
+export CARGO_RUSTC_OPTS="-Ztime-passes -Zinput-stats"
+export PATH=$RUSTC_DIR/bin:$PATH
 
 echo TIMES_DIR=$TIMES_DIR
 echo SCRIPTS_DIR=$SCRIPTS_DIR
-
-START=$(pwd)
-export CARGO_RUSTC_OPTS="-Ztime-passes -Zinput-stats"
-export PATH=$RUSTC_DIR/bin:$PATH
 
 # Check if user provided list of directories;
 # else process them all.
