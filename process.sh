@@ -3,16 +3,14 @@
 if [ -z "$TIMES_DIR" ]; then
     TIMES_DIR=/home/ncameron/times
 fi
-if [ -z "$SCRIPTS_DIR" ]; then
-    SCRIPTS_DIR=/home/ncameron/times-scripts
-fi
+
+START=$(pwd)
+export SCRIPTS_DIR=${START}/scripts
+export CARGO_RUSTC_OPTS="-Ztime-passes -Zinput-stats"
+export PATH=$RUSTC_DIR/bin:$PATH
 
 echo TIMES_DIR=$TIMES_DIR
 echo SCRIPTS_DIR=$SCRIPTS_DIR
-
-START=$(pwd)
-export CARGO_RUSTC_OPTS="-Ztime-passes -Zinput-stats"
-export PATH=$RUSTC_DIR/bin:$PATH
 
 # Check if user provided list of directories;
 # else process them all.
@@ -40,7 +38,7 @@ for dir in $DIRS; do
                 cd $RUST_DIR
                 git show HEAD -s >$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 cd $START/$dir
-                echo "rustc: ./$dir" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
+                echo "rustc: ./$dir$PATCH" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 make all$PATCH >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 echo "done" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
             done
@@ -51,16 +49,16 @@ for dir in $DIRS; do
 
         cd $TIMES_DIR
         for PATCH in "${PATCHES[@]}"; do
-            python $SCRIPTS_DIR/process.py "$dir$PATCH" "$DATE" 6
+            python $SCRIPTS_DIR/process.py "$dir" "$PATCH" "$DATE" 6
         done
 
-        for i in 0 1 2 3 4 5
-        do
-            for PATCH in "${PATCHES[@]}"; do
+        for PATCH in "${PATCHES[@]}"; do
+            for i in 0 1 2 3 4 5
+            do
                 git add "raw/$dir$PATCH--$DATE--$i.log"
-                git add "raw/orbit-$dir$PATCH--$DATE--$i.log"
-                git add "processed/$dir$PATCH--$DATE--$i.json"
             done
+
+            git add "processed/$dir$PATCH--$DATE.json"
         done
 
         cd $START
