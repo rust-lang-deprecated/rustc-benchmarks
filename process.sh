@@ -38,7 +38,7 @@ for dir in $DIRS; do
                 cd $RUST_DIR
                 git show HEAD -s >$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 cd $START/$dir
-                echo "rustc: ./$dir" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
+                echo "rustc: ./$dir$PATCH" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 make all$PATCH >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 echo "done" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
             done
@@ -49,7 +49,7 @@ for dir in $DIRS; do
 
         cd $TIMES_DIR
         for PATCH in "${PATCHES[@]}"; do
-            python $SCRIPTS_DIR/process.py "$dir$PATCH" "$DATE" 6
+            python $SCRIPTS_DIR/process.py "$dir" "$PATCH" "$DATE" 6
         done
 
         for PATCH in "${PATCHES[@]}"; do

@@ -8,7 +8,7 @@ LL_RATIO = False
 
 re_commit = re.compile("commit (.*)")
 re_date = re.compile("Date:   (.*)")
-re_rustc = re.compile("rustc: .*/([\w\-_\.]*)")
+re_rustc = re.compile("rustc: .*/([^/\s]*)")
 re_time_and_mem = re.compile("( *)time: ([0-9\.]*); rss: ([0-9]*)MB\s*(.*)")
 re_time = re.compile("( *)time: ([0-9\.]*)\s*(.*)")
 re_incremental_reuse = re.compile(" *incremental: re-using (\d+) out of (\d+) modules")
