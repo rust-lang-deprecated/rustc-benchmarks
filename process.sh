@@ -49,7 +49,7 @@ for dir in $DIRS; do
 
         cd $TIMES_DIR
         for PATCH in "${PATCHES[@]}"; do
-            python $SCRIPTS_DIR/process.py "$dir" "$PATCH" "$DATE" 6
+            python $SCRIPTS_DIR/process.py "$dir" "$DATE" 6
         done
 
         for PATCH in "${PATCHES[@]}"; do
