@@ -3,7 +3,7 @@
 	    all@020-incr-from-scratch \
 	    all@030-incr-change-private-fn
 
-INCREMENTAL_FLAGS="-Z incremental=incr"
+INCREMENTAL_FLAGS=-Z incremental=incr
 
 all@010-baseline:
 	cargo rustc $(CARGO_OPTS) -- $(CARGO_RUSTC_OPTS)
