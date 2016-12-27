@@ -12,7 +12,7 @@ re_rustc = re.compile("rustc: .*/([^/\s]*)")
 re_time_and_mem = re.compile("( *)time: ([0-9\.]*); rss: ([0-9]*)MB\s*(.*)")
 re_time = re.compile("( *)time: ([0-9\.]*)\s*(.*)")
 re_incremental_reuse = re.compile(" *incremental: re-using (\d+) out of (\d+) modules")
-re_incremental_dirty = re.compile(" *module .* is dirty because .* changed or was removed")
+re_incremental_other = re.compile(" *incremental: .*")
 
 re_loc =     re.compile("Lines of code:             ([0-9]*)")
 re_pre_nc =  re.compile("Pre\-expansion node count:  ([0-9]*)")
@@ -106,8 +106,8 @@ def mk_times(in_file):
                     cur_times['rss'].append((label, int(0)))
             else:
                 incremental_reuse_match = re_incremental_reuse.match(line)
-                incremental_dirty_match = re_incremental_dirty.match(line)
-                if incremental_reuse_match or incremental_dirty_match:
+                incremental_other_match = re_incremental_other.match(line)
+                if incremental_reuse_match or incremental_other_match:
                     # FIXME -- might be useful to plot the reuse data somewhere
                     pass
                 else:
