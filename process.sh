@@ -37,6 +37,8 @@ for dir in $DIRS; do
             for PATCH in "${PATCHES[@]}"; do
                 cd $RUST_DIR
                 git show HEAD -s >$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
+                rustc --version >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
+                ls -l $(which rustc) >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 cd $START/$dir
                 echo "rustc: ./$dir$PATCH" >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
                 make all$PATCH >>$TIMES_DIR/raw/$dir$PATCH--$DATE--$i.log
