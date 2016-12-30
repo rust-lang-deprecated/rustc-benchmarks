@@ -8,28 +8,27 @@ SCRIPTS_DIR=/root/benchmarks/scripts
 START=$(pwd)
 
 echo "building"
+./x.py build
 
-./configure
-make rustc -j8
-
-export RUSTFLAGS_STAGE2="-Ztime-passes -Zinput-stats"
-
-for i in 0 1 2
-do
-    echo "building, round $i"
-    git show HEAD -s >$TIMES_DIR/raw/rustc--$DATE--$i.log
-    touch src/librustc_trans/lib.rs
-    make >>$TIMES_DIR/raw/rustc--$DATE--$i.log
-done
-
-echo "processing data"
-cd $TIMES_DIR
-python $SCRIPTS_DIR/process.py rustc $DATE 3
-for i in 0 1 2
-do
-    git add raw/rustc--$DATE--$i.log
-done
-git add processed/rustc--$DATE.json
+# This is the old code that used to measure bootstrap time.  It is
+# disabled because it has not been ported to work with rustbuild yet.
+#
+#export RUSTFLAGS_STAGE2="-Ztime-passes -Zinput-stats"
+#for i in 0 1 2
+#do
+#    echo "building, round $i"
+#    git show HEAD -s >$TIMES_DIR/raw/rustc--$DATE--$i.log
+#    touch src/librustc_trans/lib.rs
+#    make >>$TIMES_DIR/raw/rustc--$DATE--$i.log
+#done
+#echo "processing data"
+#cd $TIMES_DIR
+#python $SCRIPTS_DIR/process.py rustc $DATE 3
+#for i in 0 1 2
+#do
+#    git add raw/rustc--$DATE--$i.log
+#done
+#git add processed/rustc--$DATE.json
 
 echo "benchmarks"
 export RUSTC_DIR=$START/build/x86_64-unknown-linux-gnu/stage2
