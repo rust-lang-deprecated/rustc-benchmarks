@@ -32,7 +32,7 @@ done
 git add processed/rustc--$DATE.json
 
 echo "benchmarks"
-export RUSTC_DIR=$START/x86_64-unknown-linux-gnu/stage2
+export RUSTC_DIR=$START/build/x86_64-unknown-linux-gnu/stage2
 export RUSTC=$RUSTC_DIR/bin/rustc
 export LD_LIBRARY_PATH=$RUSTC_DIR/lib
 export RUST_DIR=$START
