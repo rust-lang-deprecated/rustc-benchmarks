@@ -3,7 +3,7 @@
 
 TIMES_DIR=/root/times
 BENCH_DIR=/root/benchmarks
-SCRIPTS_DIR=/root/times-scripts
+SCRIPTS_DIR=/root/benchmarks/scripts
 
 START=$(pwd)
 
