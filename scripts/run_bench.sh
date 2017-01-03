@@ -5,7 +5,7 @@
 MYDIR=$(dirname $0)
 source "$MYDIR/dirs.sh"
 
-cd #RUST_DIR
+cd $RUST_DIR
 
 echo "building"
 ./x.py build
