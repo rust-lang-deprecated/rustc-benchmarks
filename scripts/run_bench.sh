@@ -1,11 +1,11 @@
 #!/bin/bash
+#
 # Benchmarks currently checked out Rust.
 
-TIMES_DIR=/root/times
-BENCH_DIR=/root/benchmarks
-SCRIPTS_DIR=/root/benchmarks/scripts
+MYDIR=$(dirname $0)
+source "$MYDIR/dirs.sh"
 
-START=$(pwd)
+cd #RUST_DIR
 
 echo "building"
 ./x.py build
@@ -34,7 +34,6 @@ echo "benchmarks"
 export RUSTC_DIR=$START/build/x86_64-unknown-linux-gnu/stage2
 export RUSTC=$RUSTC_DIR/bin/rustc
 export LD_LIBRARY_PATH=$RUSTC_DIR/lib
-export RUST_DIR=$START
 cd $BENCH_DIR
 ./process.sh
 

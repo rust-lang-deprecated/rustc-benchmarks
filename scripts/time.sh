@@ -1,5 +1,13 @@
 #!/bin/bash
-# Pulls current rust and benchmarks it.
+#
+# Pulls current rust and tracks the last version that we have
+# seen. When we see a new version, starts `run_bench.sh` to benchmark
+# it.
+
+MYDIR=$(dirname $0)
+source "$MYDIR/dirs.sh"
+
+cd $RUST_DIR
 
 echo "pulling master ($DATE)"
 git checkout master
@@ -17,4 +25,4 @@ do
 done
 
 export DATE=$(date +%F-%H-%M-%S)
-./run_bench.sh
+$SCRIPTS_DIR/run_bench.sh
