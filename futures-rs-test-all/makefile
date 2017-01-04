@@ -3,7 +3,7 @@
 all:
 	cargo rustc --test all $(CARGO_OPTS) -- $(CARGO_RUSTC_OPTS)
 touch:
-	rm -f target/debug/all-*
+	rm -rf target/debug
 clean:
 	cargo clean
 patches:
