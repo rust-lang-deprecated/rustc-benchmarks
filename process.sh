@@ -9,7 +9,6 @@ source "$MYDIR/scripts/dirs.sh"
 
 export CARGO_RUSTC_OPTS="-Ztime-passes -Zinput-stats"
 export PATH=$RUSTC_DIR/bin:$PATH
-export BENCH_DIR=$MYDIR
 
 echo TIMES_DIR=$TIMES_DIR
 echo SCRIPTS_DIR=$SCRIPTS_DIR
