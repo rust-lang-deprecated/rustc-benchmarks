@@ -1,0 +1,10 @@
+*.pyc
+*.orig
+.cargo
+.servo
+target
+*~
+components/servo/WD
+python/_virtualenv
+python/tidy/servo_tidy.egg-info
+
