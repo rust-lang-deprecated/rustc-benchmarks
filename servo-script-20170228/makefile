@@ -1,4 +1,16 @@
-.PHONY: all touch clean
+.PHONY: all touch clean measure
+
+DATE=$(shell date '+%Y-%m-%d')
+
+all:
+	echo "try `make measure` etc"
+
+measure:
+	@for N in clean all@000-dev all@010-dev-incr all@020-dev-touch-style all@030-dev-d007eef5; \
+	do echo ${DATE}: running '`'make $$N'`' ; \
+	make CARGO_RUSTC_OPTS=-Ztime-passes $$N > measurements.${DATE}.$$N 2>&1 ; \
+	tail -1 measurements.${DATE}.$$N ; \
+	done
 
 all@000-dev:
 	./mach cargo -- rustc -p script $(CARGO_OPTS) -- $(CARGO_RUSTC_OPTS)
